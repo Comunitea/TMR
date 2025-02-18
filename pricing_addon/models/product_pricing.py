@@ -29,7 +29,7 @@ class ProductPricelistPricing(models.Model):
 
         for product in products:
             for pricelist in pricelists:
-                price = pricelist._get_product_price(product, 1.0, False)
+                price = pricelist.get_product_price(product, 1.0, False)
                 existing_record = self.search([('product_id', '=', product.id), ('pricelist_id', '=', pricelist.id)], limit=1)
                 if price != 0:
                     if existing_record:
@@ -47,6 +47,6 @@ class ProductPricelistPricing(models.Model):
                             'price': price,
                             'pricelist_id': pricelist.id,
                             'modification_date': fields.Datetime.now(),
-                            'changed': False
+                            'changed': True
                         })
         _logger.info('Finished price calculation for products and pricelists.')
