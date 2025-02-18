@@ -1,0 +1,48 @@
+<odoo>
+    <data>
+        <record id="view_product_pricing_tree" model="ir.ui.view">
+            <field name="name">product.pricing.tree</field>
+            <field name="model">product.pricelist.pricing</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="product_id"/>
+                    <field name="price"/>
+                    <field name="pricelist_id"/>
+                    <field name="modification_date"/>
+                    <field name="changed"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_product_pricing_form" model="ir.ui.view">
+            <field name="name">product.pricing.form</field>
+            <field name="model">product.pricelist.pricing</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="price"/>
+                            <field name="pricelist_id"/>
+                            <field name="modification_date" readonly="1"/>
+                            <field name="changed" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_product_pricing" model="ir.actions.act_window">
+            <field name="name">Product Pricing</field>
+            <field name="res_model">product.pricelist.pricing</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No pricing records found.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_product_pricing" sequence="20" name="Product Pricing" parent="sale.product_menu_catalog" action="action_product_pricing"/>
+    </data>
+</odoo>

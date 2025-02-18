@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+        <record id="view_product_template_form_inherit_pricing" model="ir.ui.view">
+            <field name="name">product.template.form.inherit.pricing</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="inside">
+                    <button name="action_view_pricing" type="object" class="oe_stat_button" icon="fa-money">
+                        <field name="pricing_count" widget="statinfo" string="Pricing"/>
+                    </button>
+                    <button name="action_calculate_pricing" type="object" string="Calculate Pricing" class="oe_highlight"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Action to view product pricing -->
+        <record id="action_product_pricing" model="ir.actions.act_window">
+            <field name="name">Product Pricing</field>
+            <field name="res_model">product.pricelist.pricing</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No pricing records found.
+                </p>
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>
